@@ -9,6 +9,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="People" FontSize="100" HorizontalAlignment="Center"/>
+        <TextBlock Text="People" 
+                   FontSize="100" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"/>
+
+        <!--<SplitView  
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+
+            <SplitView.Content></SplitView.Content>
+        </SplitView>-->
+        
     </Grid>
 </Page>

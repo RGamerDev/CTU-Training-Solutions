@@ -12,7 +12,8 @@
         <NavigationView
             IsBackButtonVisible="Collapsed"
             PaneTitle="CTU Training Solutions"
-            SelectionChanged="NavigationView_SelectionChanged">
+            SelectionChanged="NavigationView_SelectionChanged"
+            IsSettingsVisible="False">
             <NavigationView.MenuItems>
                 <NavigationViewItem x:Name="Item1" Content="Home" Icon="Home" Tag="Home" />
                 <NavigationViewItem x:Name="Item2" Content="Gallery" Icon="Pictures" Tag="Gallery" />

@@ -30,28 +30,22 @@ namespace CTU_Training_Solutions.Pages
 
         private void NavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
         {
-            if (args.IsSettingsSelected)
-            {
-                ContentFrame.Navigate(typeof(SettingsPage));
-            }
-            else
-            {
-                NavigationViewItem item = args.SelectedItem as NavigationViewItem;
+            NavigationViewItem item = args.SelectedItem as NavigationViewItem;
 
-                switch (item.Tag.ToString())
-                {
-                    case "Home": ContentFrame.Navigate(typeof(LandingPage));
-                        break;
-                    case "Gallery":
-                        ContentFrame.Navigate(typeof(GalleryPage));
-                        break;
-                    case "People":
-                        ContentFrame.Navigate(typeof(PeoplePage));
-                        break;
-                    case "About":
-                        ContentFrame.Navigate(typeof(AboutPage));
-                        break;
-                }
+            switch (item.Tag.ToString())
+            {
+                case "Home":
+                    ContentFrame.Navigate(typeof(LandingPage));
+                    break;
+                case "Gallery":
+                    ContentFrame.Navigate(typeof(GalleryPage));
+                    break;
+                case "People":
+                    ContentFrame.Navigate(typeof(PeoplePage));
+                    break;
+                case "About":
+                    ContentFrame.Navigate(typeof(AboutPage));
+                    break;
             }
         }
     }

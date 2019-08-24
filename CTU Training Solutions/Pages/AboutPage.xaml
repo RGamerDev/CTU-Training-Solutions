@@ -5,10 +5,54 @@
     xmlns:local="using:CTU_Training_Solutions.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Maps="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="About" FontSize="100" HorizontalAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="About" 
+                   FontSize="100" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"
+            />
+
+            <ContentControl HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Margin="50 0">
+
+                <StackPanel x:Name="Info" Orientation="Vertical">
+                    <TextBlock Text="Contact information" FontSize="50"></TextBlock>
+                    <TextBlock FontSize="25" Margin="0 20 0 0">
+                    Developer: Richard Berthold
+                    <LineBreak/>Email: bertholdrichard@gmail.com
+                    <LineBreak/>Cell: 076 060 0890
+                    <LineBreak/>AppName: CTU Training Solutions
+                    <LineBreak/>AppVersion: 1.0.0.0
+                    </TextBlock>
+                </StackPanel>
+
+            </ContentControl>
+
+        </StackPanel>
+
+        <Maps:MapControl x:Name="Maps" 
+                         Grid.Row="1"
+                         VerticalAlignment="Top" 
+                         Height="600" 
+                         MapServiceToken="nWIfEqwCOrDFfP6DyqHj~v4drvTuzoImGSJhnaJuoWQ~Arti4EyTom5zwiOwwMinGUJfcqmUDjD_oVhrUx21o5lL13qTtLDc6dtAPG17dUJK"
+                         Loaded="Maps_Loaded"
+                         ColorScheme="Dark"
+                         WatermarkMode="Automatic"
+                         >
+            
+            <Button Content="Show current location" Click="Show_current_location"></Button>
+        </Maps:MapControl>
+
     </Grid>
 </Page>

@@ -9,7 +9,16 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Landing" FontSize="100" HorizontalAlignment="Center"/>
+        <TextBlock Text="Landing Page" 
+                   FontSize="100"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"/>
+
+        <ListView Header="CTU news" 
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center">
+            
+        </ListView>
     </Grid>
         
 </Page>

@@ -9,6 +9,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="Gallery" FontSize="100" HorizontalAlignment="Center"/>
+        <TextBlock Text="Gallery" 
+                   FontSize="100" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top"/>
+        <ScrollViewer VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Margin="0 150 0 50">
+        <VariableSizedWrapGrid 
+            Orientation="Horizontal"
+            MaximumRowsOrColumns="4"
+            ItemHeight="300" 
+            ItemWidth="300"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            CanBeScrollAnchor="True"
+            >
+        </VariableSizedWrapGrid>
+        </ScrollViewer>
     </Grid>
 </Page>
