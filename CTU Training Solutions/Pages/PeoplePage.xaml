@@ -9,17 +9,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <TextBlock Text="People" 
-                   FontSize="100" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition x:Name="MasterColumn" Width="500" />
+            <ColumnDefinition x:Name="DetailColumn" Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <!--<SplitView  
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center">
 
-            <SplitView.Content></SplitView.Content>
-        </SplitView>-->
-        
+        <TextBlock
+            Grid.Row="0"
+            Grid.ColumnSpan="2"
+            Text="People" 
+            FontSize="100" 
+            HorizontalAlignment="Center" 
+            VerticalAlignment="Top"/>
+
     </Grid>
 </Page>

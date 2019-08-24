@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.Toolkit.Uwp.Notifications;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Notifications;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,6 +49,39 @@ namespace CTU_Training_Solutions.Pages
                     ContentFrame.Navigate(typeof(AboutPage));
                     break;
             }
+        }
+
+        /// <summary>
+        /// Method for creating and displaying a toast notification
+        /// </summary>
+        /// <param name="title">Title of the toast</param>
+        /// <param name="msg">Toast content</param>
+        public static void SendNotification(string title, string msg)
+        {
+            ToastContent toastContent = new ToastContent()
+            {
+                Visual = new ToastVisual()
+                {
+                    BindingGeneric = new ToastBindingGeneric()
+                    {
+                        Children =
+                        {
+                            new AdaptiveText()
+                            {
+                                Text = title
+                            },
+
+                            new AdaptiveText()
+                            {
+                            Text = msg
+                            }
+                        }
+                    }
+                }
+            };
+
+            var toast = new ToastNotification(toastContent.GetXml());
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
         }
     }
 }

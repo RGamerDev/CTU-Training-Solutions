@@ -27,14 +27,24 @@ namespace CTU_Training_Solutions.Pages
     /// </summary>
     public sealed partial class AboutPage : Page
     {
+
+        #region Fields
         MessageDialog msg;
-        CTULocationsContext CTU;
+        CTULocationsContext CTU; 
+        #endregion
 
         public AboutPage()
         {
             this.InitializeComponent();
         }
 
+        #region Event handlers
+
+        /// <summary>
+        /// Event handler for showing app's current location
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         async private void Show_current_location(object sender, RoutedEventArgs e)
         {
             var accessState = await Geolocator.RequestAccessAsync();
@@ -54,6 +64,7 @@ namespace CTU_Training_Solutions.Pages
                     mapIcon.Title = "Current location";
                     mapIcon.Location = Maps.Center;
                     Maps.MapElements.Add(mapIcon);
+                    MainPage.SendNotification("Location", $"Your current location is Latitude: {Maps.Center.Position.Latitude.ToString()} and longitude: {Maps.Center.Position.Longitude.ToString()}");
                     break;
 
                 case GeolocationAccessStatus.Denied:
@@ -61,17 +72,37 @@ namespace CTU_Training_Solutions.Pages
                     msg = new MessageDialog("Location access is disabled, enable in the Windows settings");
                     await msg.ShowAsync();
                     break;
-                default:
-                    break;
             }
         }
 
+        /// <summary>
+        /// Eventhandler which runs when the mapcontrol has loaded 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Maps_Loaded(object sender, RoutedEventArgs e)
         {
             Maps.Center = new Geopoint(new BasicGeoposition { Latitude = -29.060881, Longitude = 24.906847 });
             Maps.ZoomLevel = 6;
+
+            //List of campus locations
             CTU = new CTULocationsContext();
+
+            //Adding map icons to the Maps control
             CTU.AddMapIcons(Maps, a => a.Title, b => b.Location);
+        }
+        #endregion
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            if (true)
+            {
+                MainPage.SendNotification("Update", "This app is currently up to date");
+            }
+            else
+            {
+                MainPage.SendNotification("Update", "This app is currently not up to date please update via our website!");
+            }
         }
     }
 }

@@ -11,11 +11,16 @@
 
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="400"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="600"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0"
+                    Grid.ColumnSpan="2">
             <TextBlock Text="About" 
                    FontSize="100" 
                    HorizontalAlignment="Center" 
@@ -26,6 +31,7 @@
                         VerticalAlignment="Top"
                         Margin="50 0">
 
+                <!--contact info-->
                 <StackPanel x:Name="Info" Orientation="Vertical">
                     <TextBlock Text="Contact information" FontSize="50"></TextBlock>
                     <TextBlock FontSize="25" Margin="0 20 0 0">
@@ -41,8 +47,17 @@
 
         </StackPanel>
 
+        <HyperlinkButton
+            Grid.Column="1"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Content="Check for updates" 
+            Click="Update"/>
+
+        <!--Map control-->
         <Maps:MapControl x:Name="Maps" 
                          Grid.Row="1"
+                         Grid.ColumnSpan="2"
                          VerticalAlignment="Top" 
                          Height="600" 
                          MapServiceToken="nWIfEqwCOrDFfP6DyqHj~v4drvTuzoImGSJhnaJuoWQ~Arti4EyTom5zwiOwwMinGUJfcqmUDjD_oVhrUx21o5lL13qTtLDc6dtAPG17dUJK"
