@@ -16,43 +16,43 @@ namespace CTU_Training_Solutions.Data
     /// </summary>
     class EventContext
     {
-        private ObservableCollection<CTUEvent> Events;
+        private ObservableCollection<Event> Events;
 
         public EventContext()
         {
-            Events = new ObservableCollection<CTUEvent>()
+            Events = new ObservableCollection<Event>()
             {
-                new CTUEvent
+                new Event
                 {   Name = "Potchefstroom Student Workshop Design Faculty",
                     Description = "You are invited! Come and join us for a student workshop on CTU's design tracks at a Potchefstroo...",
                     Date = DateTime.Parse("24 August 2019 09:00"),
-                    Link = new Uri("https://ctutraining.ac.za/upcoming-events/potchefstroom-student-workshop-design-faculty/")
+                    Link = new HyperlinkButton{Content = "https://ctutraining.ac.za/upcoming-events/potchefstroom-student-workshop-design-faculty/", NavigateUri = new Uri("https://ctutraining.ac.za/upcoming-events/potchefstroom-student-workshop-design-faculty/") }
                 },
-                new CTUEvent
+                new Event
                 {   Name = "Career One2One Saturday",
                     Description = "Stay Calm! Book your ONE2ONE session now!...",
                     Date = DateTime.Parse("31 August 2019 09:00"),
-                    Link = new Uri("https://ctutraining.ac.za/upcoming-events/one2onesession/")
+                    Link = new HyperlinkButton{Content = "https://ctutraining.ac.za/upcoming-events/one2onesession/", NavigateUri = new Uri("https://ctutraining.ac.za/upcoming-events/one2onesession/") }
                 },
-                new CTUEvent
+                new Event
                 {   Name = "Student Workshop Business/Management Facility",
                     Description = "You are invited! Come and join us for a student workshop on CTU's business/management tracks at a...",
                     Date = DateTime.Parse("14 September 2019 09:00 "),
-                    Link = new Uri("https://ctutraining.ac.za/upcoming-events/student-workshop-business-management-facility-2/")
+                    Link = new HyperlinkButton{Content = "https://ctutraining.ac.za/upcoming-events/student-workshop-business-management-facility-2/", NavigateUri = new Uri("https://ctutraining.ac.za/upcoming-events/student-workshop-business-management-facility-2/") }
                 },
             };
         }
 
-        public void AddNews(ListView news, Func<CTUEvent, (string Name, string Description, DateTime Date, Uri link)> expression)
+        public void AddNews(ListView news, Func<Event, (string Name, string Description, DateTime Date, HyperlinkButton link)> expression)
         {
             foreach (var ev in Events)
             {
                 string Name, Description;
                 DateTime date;
-                Uri uri;
+                HyperlinkButton uri;
                 (Name, Description, date, uri) = expression.Invoke(ev);
 
-                news.Items.Add( new ListViewItem() { Content = $"{Name}\n{Description}\n{date.ToString()}\n{uri.ToString()}" });
+                news.Items.Add( new ListViewItem() { Content = $"{Name}\n{Description}\n{date.ToString()}\n{uri.NavigateUri.ToString()}" });
             }
         }
     }

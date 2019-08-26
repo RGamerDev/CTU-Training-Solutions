@@ -30,7 +30,7 @@ namespace CTU_Training_Solutions.Pages
 
         #region Fields
         MessageDialog msg;
-        CTULocationsContext CTU; 
+        LocationsContext CTU; 
         #endregion
 
         public AboutPage()
@@ -86,10 +86,10 @@ namespace CTU_Training_Solutions.Pages
             Maps.ZoomLevel = 6;
 
             //List of campus locations
-            CTU = new CTULocationsContext();
+            CTU = new LocationsContext();
 
             //Adding map icons to the Maps control
-            CTU.AddMapIcons(Maps, a => a.Title, b => b.Location);
+            CTU.AddMapIcons(Maps, a => a.Title, b => b.Coordinates);
         }
         #endregion
 

@@ -10,15 +10,15 @@ namespace CTU_Training_Solutions.Data
     /// <summary>
     /// Context data which contains Contact information and their processes
     /// </summary>
-    class CTUContactsContext
+    class ContactsContext
     {
-        public List<CTUContact> Contacts;
+        public List<Contact> Contacts;
 
-        public CTUContactsContext()
+        public ContactsContext()
         {
-            Contacts = new List<CTUContact>()
+            Contacts = new List<Contact>()
             {
-                new CTUContact{Name = "Richard" , Ip = "192.168.1.54"},
+                new Contact{Name = "Richard" , Ip = "192.168.1.54"},
             };
         }
     }

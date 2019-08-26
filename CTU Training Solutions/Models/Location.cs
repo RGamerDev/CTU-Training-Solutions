@@ -10,9 +10,9 @@ namespace CTU_Training_Solutions.Models
     /// <summary>
     /// Class for CTULocation objects
     /// </summary>
-    public class CTULocation
+    public class Location
     {
-        public Geopoint Location { get; set; }
+        public Geopoint Coordinates { get; set; }
         public string Title { get; set; }
     }
 }

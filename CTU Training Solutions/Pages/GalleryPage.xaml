@@ -17,6 +17,7 @@
                       HorizontalAlignment="Center"
                       Margin="0 150 0 50">
         <VariableSizedWrapGrid 
+            Name="Gallery"
             Orientation="Horizontal"
             MaximumRowsOrColumns="4"
             ItemHeight="300" 
@@ -25,7 +26,26 @@
             VerticalAlignment="Center"
             CanBeScrollAnchor="True"
             >
-        </VariableSizedWrapGrid>
+            <Image 
+                Source="ms-appx:///Assets/Event pictures\1.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\2.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\3.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\4.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\5.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\6.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\7.jpg"/>
+                <Image 
+                Source="ms-appx:///Assets/Event pictures\8.jpg"/>
+            
+            </VariableSizedWrapGrid>
         </ScrollViewer>
+        
+
     </Grid>
 </Page>

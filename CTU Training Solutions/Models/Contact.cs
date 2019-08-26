@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Windows.UI.Xaml.Controls;
 
 namespace CTU_Training_Solutions.Models
 {
     /// <summary>
-    /// Class for CTUEvent objects
+    /// Class for CTUContact objects
     /// </summary>
-    public class CTUEvent
+    public class Contact
     {
         public string Name { get; set; }
-        public string Description { get; set; }
-        public DateTime Date { get; set; }
-        public Uri Link { get; set; }
+        public string Ip { get; set; }
     }
 }
