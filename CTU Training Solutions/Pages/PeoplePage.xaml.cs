@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Windows.Storage.Streams;
 using Windows.Web;
 using Windows.ApplicationModel.DataTransfer;
+using CTU_Training_Solutions.Data;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,17 +29,22 @@ namespace CTU_Training_Solutions.Pages
     /// </summary>
     public sealed partial class PeoplePage : Page
     {
+        #region Fields
         DataTransferManager data = DataTransferManager.GetForCurrentView();
         private MessageWebSocket messageWebSocket;
         private Task connectTask;
         public string message;
+        public ContactsContext context;
+        #endregion
 
         public PeoplePage()
         {
             this.InitializeComponent();
             data.DataRequested += DataTransferManager_DataRequested;
+            context = new ContactsContext();
         }
 
+        #region Event Handlers
         private void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
             DataRequest request = args.Request;
@@ -68,15 +74,7 @@ namespace CTU_Training_Solutions.Pages
             }
         }
 
-        private async Task SendMessageUsingMessageWebSocketAsync(string message)
-        {
-            using (var dataWriter = new DataWriter(this.messageWebSocket.OutputStream))
-            {
-                dataWriter.WriteString(message);
-                await dataWriter.StoreAsync();
-                dataWriter.DetachStream();
-            }
-        }
+
 
         private void WebSocket_MessageReceived(MessageWebSocket sender, MessageWebSocketMessageReceivedEventArgs args)
         {
@@ -86,7 +84,6 @@ namespace CTU_Training_Solutions.Pages
                 {
                     dataReader.UnicodeEncoding = UnicodeEncoding.Utf8;
                     message = dataReader.ReadString(dataReader.UnconsumedBufferLength);
-                    txtbl.Text = message;
                     //this.messageWebSocket.Dispose();
                 }
             }
@@ -108,5 +105,28 @@ namespace CTU_Training_Solutions.Pages
 
             //connectTask.ContinueWith(_ => this.SendMessageUsingMessageWebSocketAsync("Hello, World!"));
         }
+
+        private void Master_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            DetailsFrame.Navigate(typeof(PeopleDetailsPage));
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Master.ItemsSource = context.Contacts;
+        }
+        #endregion
+
+        #region Method
+        private async Task SendMessageUsingMessageWebSocketAsync(string message)
+        {
+            using (var dataWriter = new DataWriter(this.messageWebSocket.OutputStream))
+            {
+                dataWriter.WriteString(message);
+                await dataWriter.StoreAsync();
+                dataWriter.DetachStream();
+            }
+        } 
+        #endregion
     }
 }

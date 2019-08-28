@@ -36,10 +36,14 @@
                     <TextBlock Text="Contact information" FontSize="50"></TextBlock>
                     <TextBlock FontSize="25" Margin="0 20 0 0">
                     Developer: Richard Berthold
-                    <LineBreak/>Email: bertholdrichard@gmail.com
-                    <LineBreak/>Cell: 076 060 0890
-                    <LineBreak/>AppName: CTU Training Solutions
-                    <LineBreak/>AppVersion: 1.0.0.0
+                        <LineBreak/>
+                    Email: bertholdrichard@gmail.com
+                        <LineBreak/> 
+                    Cell: 076 060 0890
+                        <LineBreak/> 
+                    AppName: CTU Training Solutions 
+                        <LineBreak/>
+                    AppVersion: 1.0.0.0 
                     </TextBlock>
                 </StackPanel>
 
