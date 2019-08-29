@@ -1,33 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using CTU_Training_Solutions.Data;
+using System;
+using System.Threading.Tasks;
+using Windows.Data.Json;
 using Windows.Security.Authentication.Web;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using winsdkfb;
-using Windows.UI.Notifications;
-using Microsoft.Toolkit.Uwp.Notifications; // Notifications library
-using Microsoft.QueryStringDotNET; // QueryString.NET
-using Windows.Web.Http.Filters;
 using Windows.Web.Http;
-using System.Threading.Tasks;
-using Windows.Data.Json;
-using CTU_Training_Solutions.Data;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace CTU_Training_Solutions.Pages
 {
-    
+
 
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.

@@ -1,11 +1,5 @@
 ﻿using CTU_Training_Solutions.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Windows.Web.Http.Filters;
-using Windows.Web.Http;
 using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Controls;
 

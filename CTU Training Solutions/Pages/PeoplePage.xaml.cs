@@ -1,24 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+﻿using CTU_Training_Solutions.Data;
+using CTU_Training_Solutions.Models;
+using System;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Networking.Sockets;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.Networking.Sockets;
-using System.Threading.Tasks;
-using Windows.Storage.Streams;
 using Windows.Web;
-using Windows.ApplicationModel.DataTransfer;
-using CTU_Training_Solutions.Data;
-using CTU_Training_Solutions.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -81,7 +71,11 @@ namespace CTU_Training_Solutions.Pages
         }
 
 
-
+        /// <summary>
+        /// When a message is received
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void WebSocket_MessageReceived(MessageWebSocket sender, MessageWebSocketMessageReceivedEventArgs args)
         {
             try
