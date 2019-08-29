@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Controls.Maps;
 using Windows.Devices.Geolocation;
 using Windows.UI.Popups;
 using CTU_Training_Solutions.Data;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -93,8 +94,11 @@ namespace CTU_Training_Solutions.Pages
         }
         #endregion
 
-        private void Update(object sender, RoutedEventArgs e)
+        async private void Update(object sender, RoutedEventArgs e)
         {
+            Progress.IsActive = true;
+            await Task.Delay(3000);
+
             if (true)
             {
                 MainPage.SendNotification("Update", "This app is currently up to date");
@@ -103,6 +107,8 @@ namespace CTU_Training_Solutions.Pages
             {
                 MainPage.SendNotification("Update", "This app is currently not up to date please update via our website!");
             }
+
+            Progress.IsActive = false;
         }
     }
 }

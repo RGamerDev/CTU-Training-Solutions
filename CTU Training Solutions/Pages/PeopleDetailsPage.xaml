@@ -24,8 +24,9 @@
             Name="Person"
             Text="Recipient"
             HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             Grid.ColumnSpan="2"
-            FontSize="100"/>
+            FontSize="50"/>
 
         <ScrollViewer
             HorizontalScrollBarVisibility="Auto"
@@ -55,7 +56,7 @@
             Grid.Column="1"
             VerticalAlignment="Bottom"
             HorizontalAlignment="Stretch"
-            Content="Send"/>
+            Content="Send" Click="SendMsg"/>
 
 
     </Grid>

@@ -19,7 +19,17 @@ namespace CTU_Training_Solutions.Data
         {
             Contacts = new ObservableCollection<Contact>()
             {
-                new Contact{Name = "Richard" , Ip = "192.168.1.54"},
+                new Contact{Name = "Richard", Ip = "192.168.1.54"},
+                new Contact{Name = "Gerhard", Ip = "192.168.1.54"},
+                new Contact{Name = "Mikhail", Ip = "192.168.1.54"},
+                new Contact{Name = "Donovan", Ip = "192.168.1.54"},
+                new Contact{Name = "Leonard", Ip = "192.168.1.54"},
+                new Contact{Name = "Marko", Ip = "192.168.1.54"},
+                new Contact{Name = "Taahira", Ip = "192.168.1.54"},
+                new Contact{Name = "Cindy", Ip = "192.168.1.54"},
+                new Contact{Name = "Egon", Ip = "192.168.1.54"},
+                new Contact{Name = "Chubbs", Ip = "192.168.1.54"},
+                new Contact{Name = "Grayson", Ip = "192.168.1.54"},
             };
         }
     }

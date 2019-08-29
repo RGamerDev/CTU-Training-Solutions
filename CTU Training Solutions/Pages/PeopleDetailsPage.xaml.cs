@@ -22,9 +22,21 @@ namespace CTU_Training_Solutions.Pages
     /// </summary>
     public sealed partial class PeopleDetailsPage : Page
     {
+        private string context;
         public PeopleDetailsPage()
         {
             this.InitializeComponent();
+        }
+
+        private void SendMsg(object sender, RoutedEventArgs e)
+        {
+            ChatWindow.Items.Add($"{context}: {Txt.Text}");
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            context = e.Parameter.ToString();
+            Person.Text = context;
         }
     }
 }

@@ -18,6 +18,7 @@ using Windows.Storage.Streams;
 using Windows.Web;
 using Windows.ApplicationModel.DataTransfer;
 using CTU_Training_Solutions.Data;
+using CTU_Training_Solutions.Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -55,6 +56,11 @@ namespace CTU_Training_Solutions.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            foreach (Contact item in context.Contacts)
+            {
+                Master.Items.Add(item.Name);
+            }
+
             this.messageWebSocket = new MessageWebSocket();
 
             // In this example, we send/receive a string, so we need to set the MessageType to Utf8.
@@ -108,13 +114,9 @@ namespace CTU_Training_Solutions.Pages
 
         private void Master_ItemClick(object sender, ItemClickEventArgs e)
         {
-            DetailsFrame.Navigate(typeof(PeopleDetailsPage));
+            frame.Navigate(typeof(PeopleDetailsPage), e.ClickedItem.ToString());
         }
 
-        private void Grid_Loaded(object sender, RoutedEventArgs e)
-        {
-            Master.ItemsSource = context.Contacts;
-        }
         #endregion
 
         #region Method

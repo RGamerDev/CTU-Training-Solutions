@@ -30,11 +30,11 @@
 
         <ListView 
             x:Name="News"
-                Grid.Column="0"
-                Grid.Row="1"
-                Header="CTU news" 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
+            Grid.Column="0"
+            Grid.Row="1"
+            Header="CTU news" 
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
             FontSize="50">
 
         </ListView>
@@ -57,8 +57,5 @@
                 Margin="0 50 0 0"/>
 
         </StackPanel>
-
-        <Button Click="MainGridLoaded"/>
     </Grid>
-
 </Page>

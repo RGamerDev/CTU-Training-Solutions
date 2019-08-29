@@ -66,7 +66,7 @@ namespace CTU_Training_Solutions.Pages
             Uri StartUri = new Uri(FacebookURL);
             Uri callback = new Uri("https://developers.facebook.com/apps/2809518512451486/fb-login/settings/");
 
-            WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(WebAuthenticationOptions.None, StartUri, callback);
+            WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(WebAuthenticationOptions.None, StartUri);
 
             if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
             {
@@ -133,10 +133,5 @@ namespace CTU_Training_Solutions.Pages
             evc.AddNews(News, a =>(a.Name, a.Description, a.Date, a.Link));
         }
         #endregion
-
-        private void MainGridLoaded(object sender, RoutedEventArgs e)
-        {
-            DisplayNews();
-        }
     }
 }

@@ -8,12 +8,14 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid Loaded="Grid_Loaded">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="150"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
         <TextBlock
@@ -24,40 +26,18 @@
             HorizontalAlignment="Center" 
             VerticalAlignment="Top"/>
 
-        <SplitView
-            Grid.Row="2">
-            
-            <SplitView.Pane>
-                <ListView 
-                    Name="Master" 
-                    HorizontalAlignment="Left"
-                    ItemClick="Master_ItemClick"
-                    >
+        <ListView 
+            Name="Master" 
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            ItemClick="Master_ItemClick"
+            IsItemClickEnabled="True"
+            Grid.Row="1">
+        </ListView>
 
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="x:String">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="Assets/Square44x44Logo.scale-200.png" Width="32" Height="32" 
-                       HorizontalAlignment="Left"/>
-                                <TextBlock Text="{x:Bind}" Foreground="Teal" 
-                           FontSize="14" Grid.Column="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
+        <Frame x:Name="frame"
+               Grid.Row="1"
+               Grid.Column="1"/>
 
-                    <ListViewItem Content="Item1"/>
-                </ListView>
-            </SplitView.Pane>
-
-            <SplitView.Content>
-                <ContentControl Name="Details">
-                    <Frame Name="DetailsFrame"/>
-                </ContentControl>
-            </SplitView.Content>
-        </SplitView>
     </Grid>
 </Page>
