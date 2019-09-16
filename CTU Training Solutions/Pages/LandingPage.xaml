@@ -35,8 +35,8 @@
             Header="CTU news" 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            FontSize="50">
-
+            FontSize="50"
+            >
         </ListView>
 
         <StackPanel

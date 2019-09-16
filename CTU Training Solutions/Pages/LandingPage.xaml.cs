@@ -3,9 +3,11 @@ using System;
 using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Security.Authentication.Web;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.Web.Http;
+using Windows.Web.Syndication;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -20,7 +22,6 @@ namespace CTU_Training_Solutions.Pages
     {
 
         #region Fields
-        EventContext evc;
         Uri Uri = new Uri("https://www.facebook.com/v4.0/dialog/oauth?client_id=2809518512451486&redirect_uri=https://www.facebook.com/connect/login_success.html");
         Uri SID = new Uri(WebAuthenticationBroker.GetCurrentApplicationCallbackUri().ToString());
         private readonly string[] requested_permissions =
@@ -45,34 +46,44 @@ namespace CTU_Training_Solutions.Pages
         /// <param name="e"></param>
         async private void Login_Click(object sender, RoutedEventArgs e)
         {
-            String FacebookURL = "https://www.facebook.com/dialog/oauth?client_id=2809518512451486&redirect_uri=https://www.facebook.com/connect/login_success.html&scope=read_stream&display=popup&response_type=token";
-
-            Uri StartUri = new Uri(FacebookURL);
-            Uri callback = new Uri("https://developers.facebook.com/apps/2809518512451486/fb-login/settings/");
-
-            WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(WebAuthenticationOptions.None, StartUri);
-
-            if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
+            try
             {
-                string Name = await GetFacebookUserNameAsync(WebAuthenticationResult.ResponseData.ToString());
-                SessionContext.Username = Name;
-                MainPage.SendNotification($"Hello {SessionContext.Username}", $"{SessionContext.Username} has logged in successfully");
-                WebAuthenticationResult.ResponseData.ToString();
-                txtLogin.Text = $"Username: {SessionContext.Username}";
-                btnlogin.Visibility = Visibility.Collapsed;
+                Uri StartUri = new Uri("https://www.facebook.com/v4.0/dialog/oauth?client_id=2809518512451486&redirect_uri=https://www.facebook.com/connect/login_success.html&display=popup&response_type=token");
+                Uri EndUri = new Uri("https://www.facebook.com/connect/login_success.html");
+
+                WebAuthenticationResult WebAuthenticationResult = await WebAuthenticationBroker.AuthenticateAsync(
+                                                        WebAuthenticationOptions.None,
+                                                        StartUri,
+                                                        EndUri);
+                if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.Success)
+                {
+                    string Name = await GetFacebookUserNameAsync(WebAuthenticationResult.ResponseData.ToString());
+                    SessionContext.Username = Name;
+                    MainPage.SendNotification($"Hello {SessionContext.Username}", $"{SessionContext.Username} has logged in successfully");
+                    WebAuthenticationResult.ResponseData.ToString();
+                    txtLogin.Text = $"Username: {SessionContext.Username}";
+                    btnlogin.Visibility = Visibility.Collapsed;
+                    DisplayNews();
+                }
+                else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
+                {
+                    MainPage.SendNotification("Error", "Response status is an error");
+                }
+                else
+                {
+                    MainPage.SendNotification("Error", "Error occurred while attempting to login");
+                }
             }
-            else if (WebAuthenticationResult.ResponseStatus == WebAuthenticationStatus.ErrorHttp)
+            catch (Exception Error)
             {
-                MainPage.SendNotification("Error", "Error occurred while attempting to login");
+                MainPage.SendNotification("Error", Error.Message);
             }
 
-            DisplayNews();
+            
         }
         #endregion
 
         #region Methods
-
-        
 
         /// <summary>
         /// This function extracts access_token from the response returned from web authentication broker
@@ -111,10 +122,15 @@ namespace CTU_Training_Solutions.Pages
         /// <summary>
         /// Displays news after logging in
         /// </summary>
-        private void DisplayNews()
+        async private void DisplayNews()
         {
-            evc = new EventContext();
-            evc.AddNews(News, a =>(a.Name, a.Description, a.Date, a.Link));
+            SyndicationClient client = new SyndicationClient();
+            SyndicationFeed feed = await client.RetrieveFeedAsync(new Uri("https://www.colcampus.com/feeds/announcements/enrollment_Lf9zD5wfVWRRIzMEWuirHT9uwjApueeWYcZNJOSm.atom"));
+
+            foreach (SyndicationItem item in feed.Items)
+            {
+                News.Items.Add(new ListViewItem() { Content = item.Title.Text });
+            }
         }
         #endregion
     }
